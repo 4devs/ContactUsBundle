@@ -1,0 +1,31 @@
+<table id="message-info">
+    <tr>
+        <td>ip</td>
+        <td>{{ message.ip }}</td>
+    </tr>
+    <tr>
+        <td>created At</td>
+        <td>{{ message.createdAt|date }}</td>
+    </tr>
+    <tr>
+        <td>phone</td>
+        <td>{{ message.phone }}</td>
+    </tr>
+    <tr>
+        <td>name</td>
+        <td>{{ message.name }}</td>
+    </tr>
+    <tr>
+        <td>email</td>
+        <td>{{ message.email }}</td>
+    </tr>
+    <tr>
+        <td>message</td>
+        <td>{{ message.message }}</td>
+    </tr>
+</table>
+<style>
+    #message-info {
+        padding: 10px 5px;
+    }
+</style>

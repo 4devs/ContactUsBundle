@@ -1,0 +1,33 @@
+{
+    "name": "fdevs/contact-us-bundle",
+    "license": "MIT",
+    "type": "synfony-bundle",
+    "description": "Bundle for Contact Us",
+    "homepage": "https://github.com/4devs/ContactUsBundle",
+    "keywords": ["symfony", "contact"],
+    "authors": [
+        {
+            "name": "Samusev Andrey",
+            "email": "andrey_simfi@list.ru",
+            "homepage": "http://andrey.4devs.io/"
+        },
+        {
+            "name": "4devs Community",
+            "homepage": "https://github.com/4devs/ContactUsBundle/contributors"
+        }
+    ],
+    "require": {
+        "php": ">=5.4",
+        "symfony/symfony": "~2.5",
+        "twig/extensions": "~1.0",
+        "symfony/swiftmailer-bundle": "~2.3",
+        "misd/phone-number-bundle": "~1.0"
+    },
+    "suggest": {
+        "doctrine/mongodb-odm-bundle" : "to use with mongodb"
+    },
+    "autoload": {
+        "psr-0": { "FDevs\\ContactUsBundle": "" }
+    },
+    "target-dir": "FDevs/ContactUsBundle"
+}

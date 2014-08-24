@@ -1,0 +1,14 @@
+placeholder:
+    name: 'Your Name *'
+    email: 'Your Email *'
+    phone: 'Your Phone'
+    message: 'Your Message *'
+required.message:
+    name: 'Please enter your name.'
+    email: 'Please enter your email address.'
+    email_invalid: 'Please enter your email address.'
+    phone: 'Please enter your phone number.'
+    message: 'Please enter a message.'
+form:
+    submit: 'Send Message'
+    success: 'Your message has been sent.'

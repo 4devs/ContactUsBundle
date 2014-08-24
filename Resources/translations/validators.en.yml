@@ -1,0 +1,17 @@
+f_devs_contact_us:
+    name:
+        already_used: The name is already used
+        blank: Please enter a name
+        short: "[-Inf,Inf]The name is too short"
+        long: "[-Inf,Inf]The name is too long"
+    email:
+        already_used: The email is already used
+        blank: Please enter an email
+        short: "[-Inf,Inf]The email is too short"
+        long: "[-Inf,Inf]The email is too long"
+        invalid: The email is not valid
+    phone:
+        invalid: This is not a valid phone number
+    message:
+        short: "[-Inf,Inf]The message is too short"
+        long: "[-Inf,Inf]The message is too long"

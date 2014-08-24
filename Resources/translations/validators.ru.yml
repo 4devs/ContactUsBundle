@@ -1,0 +1,17 @@
+f_devs_contact_us:
+    name:
+        already_used: Имя уже используется
+        blank: Пожалуйста, укажите Имя
+        short: "[-Inf,Inf]Имя слишком короткое"
+        long: "[-Inf,Inf]Имя слишком длинное"
+    email:
+        already_used: Email уже используется
+        blank: Пожалуйста, укажите Ваш email
+        short: "[-Inf,Inf]Email слишком короткий"
+        long: "[-Inf,Inf]Email слишком длинный"
+        invalid: Email в неправильном формате
+    phone:
+        invalid: Номер телефона не правильный
+    message:
+        short: "[-Inf,Inf]Сообщение слишком короткое"
+        long: "[-Inf,Inf]Сообщение слишком длинное"

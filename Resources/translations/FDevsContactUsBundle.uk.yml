@@ -1,0 +1,13 @@
+placeholder:
+    name: "Ваше iм'я *"
+    email: 'Ваш Email *'
+    phone: 'Ваш телефон'
+    message: 'Ваше повiдомлення *'
+required.message:
+    name: "Введiть Ваше iм'я."
+    email: 'Введiть Ваш email.'
+    phone: 'Введiть Ваш мобiльний телефон.'
+    message: 'Введiть Ваше повiдомлення.'
+form:
+    submit: 'Вiдправити повiдомлення'
+    success: 'Ваше повiдомлення було вiдправлено.'
