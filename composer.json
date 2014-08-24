@@ -1,7 +1,7 @@
 {
     "name": "fdevs/contact-us-bundle",
     "license": "MIT",
-    "type": "synfony-bundle",
+    "type": "symfony-bundle",
     "description": "Bundle for Contact Us",
     "homepage": "https://github.com/4devs/ContactUsBundle",
     "keywords": ["symfony", "contact"],
