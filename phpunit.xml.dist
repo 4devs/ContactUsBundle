@@ -13,10 +13,10 @@
         syntaxCheck                 = "false"
         bootstrap="vendor/autoload.php" >
 
+
     <testsuites>
-        <testsuite name="FDevsTagBundle Test Suite">
+        <testsuite name="FDevsContactUsBundle Test Suite">
             <directory suffix="Test.php">./Tests</directory>
-            <directory></directory>
         </testsuite>
     </testsuites>
 
