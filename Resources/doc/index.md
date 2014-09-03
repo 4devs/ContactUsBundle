@@ -8,6 +8,7 @@ Installation and usage is a quick:
 1. Download ContactUsBundle using composer
 2. Enable the Bundle
 3. Use the bundle
+4. Use Contact list
 
 
 ### Step 1: Download ContactUsBundle using composer
@@ -67,8 +68,17 @@ add config
 # app/config/config.yml
 f_devs_contact_us:
     db_driver: 'mongodb'
+    admin_service: 'sonata' # if needed
     emails: ['andrey@company.com','victor@company.com']
     from: "mail@company.com"
+
+sonata_admin:
+    dashboard:
+        groups:
+            label.contactUs:
+                label_catalogue: FDevsContactUsBundle
+                items:
+                    - f_devs_contact_us.admin.contact_us
 ```
 
 add routing
@@ -91,4 +101,59 @@ in your template
 
 ``` twig
 {{ render(controller('FDevsContactUsBundle:Default:index')) }}
+```
+
+### Step 4: Use contact list
+
+insert in page contact by contact Name
+``` twig
+{{ render(controller('f_devs_contact_us.controller.contact:contactAction',{'name':'contactName'})) }}
+{# or #}
+{{ render(controller('f_devs_contact_us.controller.contact:contactAction',{'name':'contactName','tpl':'AcmeDemoBundle:Contact:contact.html.twig'})) }}
+```
+
+insert in page contact list
+``` twig
+{{ render(controller('f_devs_contact_us.controller.contact:listAction')) }}
+{# or #}
+{{ render(controller('f_devs_contact_us.controller.contact:listAction',{'tplContact':'AcmeDemoBundle:Contact:contact.html.twig'})) }}
+{{ render(controller('f_devs_contact_us.controller.contact:listAction',{'tplList':'AcmeDemoBundle:Contact:list.html.twig'})) }}
+{{ render(controller('f_devs_contact_us.controller.contact:listAction',{'tplList':'AcmeDemoBundle:Contact:list.html.twig','tplContact':'AcmeDemoBundle:Contact:contact.html.twig'})) }}
+```
+
+### Step 5: Add/replace Tpl to connect type
+
+add template
+
+``` twig
+{# AcmeDemoBundle:Connect:skype.html.twig #}
+{% extends 'FDevsContactUsBundle:Connect:default.html.twig' %}
+
+{% block connectBlock %}
+    <script type="text/javascript" src="http://www.skypeassets.com/i/scom/js/skype-uri.js"></script>
+    <div id="SkypeButton_Call_yourname_1">
+      <script type="text/javascript">
+        Skype.ui({
+          "name": "dropdown",
+          "element": "SkypeButton_Call_yourname_1",
+          "participants": ["yourname"],
+          "imageSize": 32
+        });
+      </script>
+    </div>
+{% endblock connectBlock %}
+```
+
+add config
+    
+``` yaml
+# app/config/config.yml
+f_devs_contact_us:
+    tpl:
+        connect:
+            email:  'FDevsContactUsBundle:Connect:email.html.twig'
+            fax:    'FDevsContactUsBundle:Connect:fax.html.twig'
+            github: 'FDevsContactUsBundle:Connect:github.html.twig'
+            phone:  'FDevsContactUsBundle:Connect:phone.html.twig'
+            skype:  'AcmeDemoBundle:Connect:skype.html.twig'
 ```

@@ -6,17 +6,55 @@
 
     <parameters>
         <parameter key="f_devs_contact_us.message_manager.class">FDevs\ContactUsBundle\Service\MessageManager</parameter>
+        <parameter key="f_devs_contact_us.contact_manager.class">FDevs\ContactUsBundle\Service\ContactManager</parameter>
+        <parameter key="f_devs_contact_us.form.type.connect.class">FDevs\ContactUsBundle\Form\Type\ConnectType</parameter>
+        <parameter key="f_devs_contact_us.form.type.contact.class">FDevs\ContactUsBundle\Form\Type\ContactType</parameter>
+        <parameter key="f_devs_contact_us.form.type.postal_address.class">FDevs\ContactUsBundle\Form\Type\PostalAddressType</parameter>
+        <parameter key="f_devs_contact_us.model.contact">FDevs\ContactUsBundle\Model\Contact</parameter>
+        <parameter key="f_devs_contact_us.controller.contact.class">FDevs\ContactUsBundle\Controller\ContactController</parameter>
+        <parameter key="f_devs_contact_us.twig.connect_extension.class">FDevs\ContactUsBundle\Twig\ConnectExtension</parameter>
     </parameters>
 
     <services>
+
+        <service id="f_devs_contact_us.controller.contact" class="%f_devs_contact_us.controller.contact.class%">
+            <argument type="service" id="templating"/>
+            <argument type="service" id="f_devs_contact_us.contact_manager"/>
+            <argument>%f_devs_contact_us.tpl.list%</argument>
+            <argument>%f_devs_contact_us.tpl.contact%</argument>
+        </service>
+
         <service id="f_devs_contact_us.message_manager" class="%f_devs_contact_us.message_manager.class%">
             <argument>%f_devs_contact_us.emails%</argument>
             <argument type="service" id="swiftmailer.mailer.default"/>
             <argument type="service" id="templating"/>
             <argument>%f_devs_contact_us.template_name%</argument>
             <argument>%f_devs_contact_us.from%</argument>
-            <argument type="service" id="f_devs_contact_us.db_manager" on-invalid="null"/>
+            <argument type="service" id="f_devs_contact_us.model_manager" on-invalid="null"/>
         </service>
+
+        <service id="f_devs_contact_us.contact_manager" class="%f_devs_contact_us.contact_manager.class%">
+            <argument>%f_devs_contact_us.model.contact%</argument>
+            <argument type="service" id="f_devs_contact_us.model_manager"/>
+        </service>
+
+        <service id="f_devs_contact_us.form.type.connect" class="%f_devs_contact_us.form.type.connect.class%">
+            <tag name="form.type" alias="fdevs_connect"/>
+        </service>
+
+        <service id="f_devs_contact_us.form.type.postal_address" class="%f_devs_contact_us.form.type.postal_address.class%">
+            <tag name="form.type" alias="fdevs_postal_address"/>
+        </service>
+
+        <service id="f_devs_contact_us.form.type.contact" class="%f_devs_contact_us.form.type.contact.class%">
+            <tag name="form.type" alias="fdevs_contact"/>
+        </service>
+
+        <service id="f_devs_contact_us.twig.connect_extension" class="%f_devs_contact_us.twig.connect_extension.class%">
+            <call method="setTplList"><argument>%f_devs_contact_us.tpl.connect%</argument></call>
+            <tag name="twig.extension" />
+        </service>
+
     </services>
 
 </container>

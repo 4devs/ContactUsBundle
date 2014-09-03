@@ -25,16 +25,21 @@ class FDevsContactUsExtension extends Extension
         $container->setParameter($this->getAlias() . '.emails', $config['emails']);
         $container->setParameter($this->getAlias() . '.from', $config['from']);
         $container->setParameter($this->getAlias() . '.template_name', $config['template_name']);
-        $container->setParameter($this->getAlias() . '.manager_name', null);
+        $container->setParameter($this->getAlias() . '.manager_name', $config['manager_name']);
+        $container->setParameter($this->getAlias() . '.tpl.contact', $config['tpl']['contact']);
+        $container->setParameter($this->getAlias() . '.tpl.list', $config['tpl']['list']);
+        $container->setParameter($this->getAlias() . '.tpl.connect', $config['tpl']['connect']);
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.xml');
-        $loader->load('sonata.xml');
 
         if ('custom' !== $config['db_driver']) {
             $loader->load(sprintf('%s.xml', $config['db_driver']));
             $container->setParameter($this->getAlias() . '.backend_type_' . $config['db_driver'], true);
         }
 
+        if ($config['admin_service']) {
+            $loader->load('admin/' . $config['admin_service'] . '.xml');
+        }
     }
 }

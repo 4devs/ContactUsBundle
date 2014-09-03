@@ -11,3 +11,8 @@ required.message:
 form:
     submit: 'Вiдправити повiдомлення'
     success: 'Ваше повiдомлення було вiдправлено.'
+label:
+    contactUs: "Зворотній зв'язок"
+    contacts: 'Контакти'
+    list_message: 'Повідомлення'
+    address: 'Адреса'

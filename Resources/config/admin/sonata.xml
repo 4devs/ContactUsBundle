@@ -6,6 +6,7 @@
 
     <parameters>
         <parameter key="f_devs_contact_us.admin_contact_us.class">FDevs\ContactUsBundle\Sonata\Admin\ContactUsAdmin</parameter>
+        <parameter key="f_devs_contact_us.admin_contact.class">FDevs\ContactUsBundle\Sonata\Admin\ContactAdmin</parameter>
         <parameter key="f_devs_contact_us.admin.groupname">ContactUs</parameter>
         <parameter key="f_devs_contact_us.admin.label_catalogue">FDevsContactUsBundle</parameter>
         <parameter key="f_devs_contact_us.admin.message.model">FDevs\ContactUsBundle\Model\Message</parameter>
@@ -13,11 +14,23 @@
     </parameters>
 
     <services>
+
         <service id="f_devs_contact_us.admin.contact_us" class="%f_devs_contact_us.admin_contact_us.class%">
             <tag name="sonata.admin" label_catalogue="%f_devs_contact_us.admin.label_catalogue%"
-                 manager_type="doctrine_mongodb" group="%f_devs_contact_us.admin.groupname%" label="block"/>
+                 manager_type="doctrine_mongodb" group="%f_devs_contact_us.admin.groupname%" label="label.list_message"/>
             <argument/>
             <argument>%f_devs_contact_us.admin.message.model%</argument>
+            <argument/>
+            <call method="setTranslationDomain">
+                <argument>%f_devs_contact_us.admin.translation_domain%</argument>
+            </call>
+        </service>
+
+        <service id="f_devs_contact_us.admin.contact" class="%f_devs_contact_us.admin_contact.class%">
+            <tag name="sonata.admin" label_catalogue="%f_devs_contact_us.admin.label_catalogue%"
+                 manager_type="doctrine_mongodb" group="%f_devs_contact_us.admin.groupname%" label="label.contacts"/>
+            <argument/>
+            <argument>%f_devs_contact_us.model.contact%</argument>
             <argument/>
             <call method="setTranslationDomain">
                 <argument>%f_devs_contact_us.admin.translation_domain%</argument>

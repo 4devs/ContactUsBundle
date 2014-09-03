@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mongo-mapping xmlns="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                        xsi:schemaLocation="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping
+                        http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping.xsd">
+
+    <document name="FDevs\ContactUsBundle\Model\Contact" collection="contacts">
+
+        <field name="id" fieldName="id" id="true"/>
+        <field name="contactName" type="string" unique="true"/>
+        <embed-one field="address" target-document="FDevs\ContactUsBundle\Model\PostalAddress"/>
+        <embed-one field="location" target-document="FDevs\GeoBundle\Model\Point"/>
+        <embed-many field="name" target-document="FDevs\PageBundle\Model\LocaleText"/>
+        <embed-many field="connectList" target-document="FDevs\ContactUsBundle\Model\Connect"/>
+    </document>
+
+</doctrine-mongo-mapping>

@@ -1,0 +1,5 @@
+{% extends 'FDevsContactUsBundle:Connect:default.html.twig' %}
+
+{% block connectBlock %}
+    <li itemprop="skype"><a href="skype:{{ data.href }}" title="{{ data.text }}"><i class="fa fa-{{ data.type }}"></i>{{ data.href }}</a></li>
+{% endblock connectBlock %}

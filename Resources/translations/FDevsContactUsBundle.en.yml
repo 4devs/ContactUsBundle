@@ -12,3 +12,8 @@ required.message:
 form:
     submit: 'Send Message'
     success: 'Your message has been sent.'
+label:
+    contactUs: 'Contact Us'
+    contacts: 'Contacts'
+    list_message: 'Message list'
+    address: 'Address'

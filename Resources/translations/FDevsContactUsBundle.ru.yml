@@ -11,3 +11,8 @@ required.message:
 form:
     submit: 'Отправить сообщение'
     success: 'Ваше сообщение отправлено.'
+label:
+    contactUs: 'Обратная связь'
+    contacts: 'Контакты'
+    list_message: 'Сообщения'
+    address: 'Адрес'

@@ -1,0 +1,7 @@
+{% for contact in list %}
+    <div itemscope itemtype="http://schema.org/Organization">
+        {% set name = contact.name|t %}
+        {% if name %}<span itemprop="name">{{ name }}</span>{% endif %}
+        {{ include(tpl_contact,{'contact':contact}) }}
+    </div>
+{% endfor %}

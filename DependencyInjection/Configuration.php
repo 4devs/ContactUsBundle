@@ -21,15 +21,42 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('f_devs_contact_us');
 
         $supportedDrivers = ['mongodb','custom'];
+        $supportedAdminService = ['sonata'];
         $rootNode
             ->children()
                 ->scalarNode('from')->isRequired()->end()
+                ->scalarNode('manager_name')->defaultNull()->end()
+                ->scalarNode('admin_service')
+                    ->defaultNull()
+                    ->validate()
+                    ->ifNotInArray($supportedAdminService)
+                    ->thenInvalid('The admin service %s is not supported. Please choose one of '.json_encode($supportedAdminService))
+                    ->end()
+                ->end()
                 ->scalarNode('template_name')->defaultValue('FDevsContactUsBundle:Email:message.html.twig')->end()
                 ->scalarNode('db_driver')
                     ->defaultValue('custom')
                     ->validate()
                     ->ifNotInArray($supportedDrivers)
                     ->thenInvalid('The driver %s is not supported. Please choose one of '.json_encode($supportedDrivers))
+                    ->end()
+                ->end()
+                ->arrayNode('tpl')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->scalarNode('contact')->defaultValue('FDevsContactUsBundle:Contact:contact.html.twig')->end()
+                        ->scalarNode('list')->defaultValue('FDevsContactUsBundle:Contact:list.html.twig')->end()
+                        ->arrayNode('connect')
+                            ->useAttributeAsKey('name')
+                            ->defaultValue([
+                                    'email' => 'FDevsContactUsBundle:Connect:email.html.twig',
+                                    'fax' => 'FDevsContactUsBundle:Connect:fax.html.twig',
+                                    'github' => 'FDevsContactUsBundle:Connect:github.html.twig',
+                                    'phone' => 'FDevsContactUsBundle:Connect:phone.html.twig',
+                                    'skype' => 'FDevsContactUsBundle:Connect:skype.html.twig',
+                                ])
+                            ->prototype('scalar')->end()
+                        ->end()
                     ->end()
                 ->end()
                 ->arrayNode('emails')

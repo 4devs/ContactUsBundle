@@ -2,7 +2,7 @@
 
 namespace FDevs\ContactUsBundle\Service;
 
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Common\Persistence\ObjectManager;
 use FDevs\ContactUsBundle\Model\Message;
 use Symfony\Component\Templating\EngineInterface;
 
@@ -12,8 +12,8 @@ class MessageManager
     private $emails = [];
     /** @var \Swift_Mailer */
     private $mailer;
-    /** @var \Doctrine\Common\Persistence\ManagerRegistry|null */
-    private $managerRegistry;
+    /** @var ObjectManager|null */
+    private $objectManager;
     /** @var \Symfony\Component\Templating\EngineInterface */
     private $templating;
     /** @var string A template name or a TemplateReferenceInterface instance */
@@ -26,7 +26,7 @@ class MessageManager
      *
      * @param array           $emails
      * @param \Swift_Mailer   $mailer
-     * @param ManagerRegistry $managerRegistry
+     * @param ObjectManager $objectManager
      */
     public function __construct(
         array $emails,
@@ -34,12 +34,12 @@ class MessageManager
         EngineInterface $templating,
         $templateName,
         $fromEmail,
-        ManagerRegistry $managerRegistry = null
+        ObjectManager $objectManager = null
     ) {
         $this->fromEmail = $fromEmail;
         $this->mailer = $mailer;
         $this->emails = $emails;
-        $this->managerRegistry = $managerRegistry;
+        $this->objectManager = $objectManager;
         $this->templating = $templating;
         $this->templateName = $templateName;
     }
@@ -54,9 +54,9 @@ class MessageManager
 
     private function persistDB(Message $message)
     {
-        if ($this->managerRegistry) {
-            $this->managerRegistry->getManager()->persist($message);
-            $this->managerRegistry->getManager()->flush();
+        if ($this->objectManager) {
+            $this->objectManager->persist($message);
+            $this->objectManager->flush();
         }
 
         return $this;
