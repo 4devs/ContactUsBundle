@@ -1,0 +1,23 @@
+{% block default %}
+    <li><a href="{{ data.href }}" title="{{ data.text }}"><i class="fa fa-{{ data.type }}"></i></a></li>
+{% endblock default %}
+
+{% block email %}
+    <li itemprop="email"><a href="mailto:{{ data.href }}" title="{{ data.text }}"><i class="fa fa-{{ data.type }}"></i>{{ data.href }}</a></li>
+{% endblock email %}
+
+{% block fax %}
+    <li itemprop="faxNumber"><a href="tel:{{ data.href }}" title="{{ data.text }}"><i class="fa fa-{{ data.type }}"></i>{{ data.href }}</a></li>
+{% endblock fax %}
+
+{% block github %}
+    <li><a href="{{ data.href }}" title="{{ data.text }}"><i class="fa fa-{{ data.type }}"></i>{{ data.href }}</a></li>
+{% endblock github %}
+
+{% block phone %}
+    <li itemprop="telephone"><a href="{{ data.href }}" title="{{ data.text }}"><i class="fa fa-{{ data.type }}"></i>{{ data.href }}</a></li>
+{% endblock phone %}
+
+{% block skype %}
+    <li itemprop="skype"><a href="skype:{{ data.href }}" title="{{ data.text }}"><i class="fa fa-{{ data.type }}"></i>{{ data.href }}</a></li>
+{% endblock skype %}

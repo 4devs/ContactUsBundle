@@ -10,7 +10,7 @@ class ConnectType extends AbstractType
     /** @var array */
     private $types = [
         'linkedin' => 'LinkedIn',
-        'envelope-o' => 'Envelope',
+        'envelope' => 'Envelope',
         'github' => 'Github',
         'skype' => 'Skype',
         'vk' => 'vk',

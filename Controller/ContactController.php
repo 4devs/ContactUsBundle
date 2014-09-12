@@ -34,24 +34,30 @@ class ContactController
         $this->contactTpl = $contactTpl;
     }
 
-    public function contactAction(Request $request, $name, $tpl = null)
+    public function contactAction(Request $request, $name, $tplContact = null, $tplConnect = null)
     {
         $contact = $this->getManager()->getByContactName($name);
         if (!$contact) {
             throw new NotFoundHttpException(sprintf('contact with name "%s" not found', $name));
         }
 
-        $tpl = $tpl ?: $this->contactTpl;
+        $tpl = $tplContact ?: $this->contactTpl;
 
-        return $this->render($tpl, ['contact' => $contact]);
+        return $this->render($tpl, ['contact' => $contact, 'tpl_connect' => $tplConnect]);
     }
 
-    public function listAction(Request $request, $tplList = null, $tplContact = null)
+    public function listAction(Request $request, $tplList = null, $tplContact = null, $tplConnect = null)
     {
         $tpl = $tplList ?: $this->listTpl;
         $tplContact = $tplContact ?: $this->contactTpl;
 
-        return $this->render($tpl, ['list' => $this->getManager()->getContactList(), 'tpl_contact' => $tplContact]);
+        return $this->render($tpl,
+            [
+                'list' => $this->getManager()->getContactList(),
+                'tpl_contact' => $tplContact,
+                'tpl_connect' => $tplConnect
+            ]
+        );
     }
 
     /**

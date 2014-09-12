@@ -31,12 +31,12 @@ class Contact
     protected $showInContactList = false;
 
     /**
-     * @var \FDevs\PageBundle\Model\LocaleText
+     * @var \FDevs\PageBundle\Model\LocaleText[]
      */
     protected $name = array();
 
     /**
-     * @var \FDevs\ContactUsBundle\Model\Connect
+     * @var \FDevs\ContactUsBundle\Model\Connect[]
      */
     protected $connectList = array();
 
@@ -54,7 +54,7 @@ class Contact
      */
     public function __toString()
     {
-        return $this->contactName?:'New Contact';
+        return $this->contactName ?: 'New Contact';
     }
 
     /**

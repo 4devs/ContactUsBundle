@@ -51,7 +51,7 @@
         </service>
 
         <service id="f_devs_contact_us.twig.connect_extension" class="%f_devs_contact_us.twig.connect_extension.class%">
-            <call method="setTplList"><argument>%f_devs_contact_us.tpl.connect%</argument></call>
+            <call method="setDefaultTpl"><argument>%f_devs_contact_us.tpl.connect%</argument></call>
             <tag name="twig.extension" />
         </service>
 
