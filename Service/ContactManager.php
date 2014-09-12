@@ -46,4 +46,4 @@ class ContactManager
         return $this->repo->findAll();
     }
 
-} 
+}

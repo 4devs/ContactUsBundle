@@ -89,4 +89,4 @@ class ConnectType extends AbstractType
         return 'fdevs_connect';
     }
 
-} 
+}

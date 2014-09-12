@@ -5,7 +5,6 @@ namespace FDevs\ContactUsBundle\Sonata\Admin;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Route\RouteCollection;
 
 class ContactAdmin extends Admin
 {
@@ -13,6 +12,11 @@ class ContactAdmin extends Admin
      * {@inheritDoc}
      */
     protected $formOptions = ['cascade_validation' => true];
+
+    /**
+     * {@inheritDoc}
+     */
+    protected $baseRoutePattern = 'contact';
 
     /**
      * {@inheritdoc}
@@ -42,8 +46,10 @@ class ContactAdmin extends Admin
     protected function configureListFields(ListMapper $list)
     {
         $list
-            ->addIdentifier('contactName');
-//            ->add('address');
+            ->addIdentifier('contactName', null, ['editable' => true])
+            ->add('showInContactList', null, ['editable' => true])
+            ->add('_action', 'actions', ['actions' => ['edit' => [], 'delete' => []]])
+        ;
     }
 
 }

@@ -24,8 +24,8 @@ class MessageManager
     /**
      * init
      *
-     * @param array           $emails
-     * @param \Swift_Mailer   $mailer
+     * @param array         $emails
+     * @param \Swift_Mailer $mailer
      * @param ObjectManager $objectManager
      */
     public function __construct(

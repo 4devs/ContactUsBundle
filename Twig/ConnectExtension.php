@@ -1,7 +1,6 @@
 <?php
 namespace FDevs\ContactUsBundle\Twig;
 
-
 use FDevs\ContactUsBundle\Model\Connect;
 
 class ConnectExtension extends \Twig_Extension
@@ -46,4 +45,4 @@ class ConnectExtension extends \Twig_Extension
         return $this;
     }
 
-} 
+}

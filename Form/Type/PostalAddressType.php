@@ -33,4 +33,4 @@ class PostalAddressType extends AbstractType
         return 'fdevs_postal_address';
     }
 
-} 
+}
