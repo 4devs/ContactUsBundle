@@ -2,7 +2,6 @@
 
 namespace FDevs\ContactUsBundle\Model;
 
-
 class Connect
 {
 

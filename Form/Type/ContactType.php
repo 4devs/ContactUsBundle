@@ -2,7 +2,6 @@
 
 namespace FDevs\ContactUsBundle\Form\Type;
 
-
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -19,7 +18,12 @@ class ContactType extends AbstractType
             ->add('name', 'translatable', ['required' => false])
             ->add('address', 'fdevs_postal_address', ['required' => false])
             ->add('location', 'fdevs_geo_point', ['required' => false])
-            ->add('connectList', 'collection', ['type' => 'fdevs_connect', 'allow_delete' => true, 'allow_add' => true]);
+            ->add('showInContactList', 'checkbox', ['required' => false])
+            ->add(
+                'connectList',
+                'collection',
+                ['type' => 'fdevs_connect', 'allow_delete' => true, 'allow_add' => true]
+            );
     }
 
     /**
@@ -42,4 +46,4 @@ class ContactType extends AbstractType
         return 'fdevs_contact';
     }
 
-} 
+}

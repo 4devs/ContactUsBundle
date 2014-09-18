@@ -19,6 +19,6 @@
 {% endif %}
 <ul class="list-inline social-buttons">
     {% for oneConnect in contact.connectList %}
-        {{ connect(oneConnect) }}
+        {{ connect(oneConnect,{'template':tpl_connect}) }}
     {% endfor %}
 </ul>

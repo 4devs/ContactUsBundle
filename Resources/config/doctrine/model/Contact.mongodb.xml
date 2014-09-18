@@ -8,6 +8,7 @@
 
         <field name="id" fieldName="id" id="true"/>
         <field name="contactName" type="string" unique="true"/>
+        <field name="showInContactList" type="boolean"/>
         <embed-one field="address" target-document="FDevs\ContactUsBundle\Model\PostalAddress"/>
         <embed-one field="location" target-document="FDevs\GeoBundle\Model\Point"/>
         <embed-many field="name" target-document="FDevs\PageBundle\Model\LocaleText"/>

@@ -46,17 +46,7 @@ class Configuration implements ConfigurationInterface
                     ->children()
                         ->scalarNode('contact')->defaultValue('FDevsContactUsBundle:Contact:contact.html.twig')->end()
                         ->scalarNode('list')->defaultValue('FDevsContactUsBundle:Contact:list.html.twig')->end()
-                        ->arrayNode('connect')
-                            ->useAttributeAsKey('name')
-                            ->defaultValue([
-                                    'email' => 'FDevsContactUsBundle:Connect:email.html.twig',
-                                    'fax' => 'FDevsContactUsBundle:Connect:fax.html.twig',
-                                    'github' => 'FDevsContactUsBundle:Connect:github.html.twig',
-                                    'phone' => 'FDevsContactUsBundle:Connect:phone.html.twig',
-                                    'skype' => 'FDevsContactUsBundle:Connect:skype.html.twig',
-                                ])
-                            ->prototype('scalar')->end()
-                        ->end()
+                        ->scalarNode('connect')->defaultValue('FDevsContactUsBundle:Contact:connect.html.twig')->end()
                     ->end()
                 ->end()
                 ->arrayNode('emails')

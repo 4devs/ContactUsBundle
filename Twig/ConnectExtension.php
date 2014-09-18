@@ -1,19 +1,24 @@
 <?php
 namespace FDevs\ContactUsBundle\Twig;
 
-
 use FDevs\ContactUsBundle\Model\Connect;
 
 class ConnectExtension extends \Twig_Extension
 {
-    private $tplList = [];
-    private $defaultTpl = 'FDevsContactUsBundle:Connect:default.html.twig';
+    /** @var string */
+    private $defaultTpl = 'FDevsContactUsBundle:Contact:connect.html.twig';
 
+    /**
+     * {@inheritDoc}
+     */
     public function getName()
     {
         return 'fdevs_contact_us_connect';
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function getFunctions()
     {
         return [
@@ -25,25 +30,39 @@ class ConnectExtension extends \Twig_Extension
         ];
     }
 
-    public function connectFunction(\Twig_Environment $environment, Connect $data)
+    /**
+     * twig render block
+     *
+     * @param \Twig_Environment $environment
+     * @param Connect           $data
+     * @param array             $options
+     *
+     * @return string
+     */
+    public function connectFunction(\Twig_Environment $environment, Connect $data, array $options = [])
     {
-        $tpl = empty($this->tplList[$data->getType()]) ? $this->defaultTpl : $this->tplList[$data->getType()];
+        $template = empty($options['template']) ? $this->defaultTpl : $options['template'];
 
-        return $environment->render($tpl, ['data' => $data]);
+        if (!$template instanceof \Twig_Template) {
+            $template = $environment->loadTemplate($template);
+        }
+        $block = $template->hasBlock($data->getType()) ? $data->getType() : 'default';
+
+        return $template->renderBlock($block, array('data' => $data, 'options' => $options));
     }
 
     /**
-     * set Tpl List
+     * set Default Tpl
      *
-     * @param array $tplList
+     * @param string $defaultTpl
      *
-     * @return self
+     * @return $this
      */
-    public function setTplList(array $tplList)
+    public function setDefaultTpl($defaultTpl)
     {
-        $this->tplList = $tplList;
+        $this->defaultTpl = $defaultTpl;
 
         return $this;
     }
 
-} 
+}

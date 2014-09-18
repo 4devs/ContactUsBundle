@@ -109,7 +109,9 @@ insert in page contact by contact Name
 ``` twig
 {{ render(controller('f_devs_contact_us.controller.contact:contactAction',{'name':'contactName'})) }}
 {# or #}
-{{ render(controller('f_devs_contact_us.controller.contact:contactAction',{'name':'contactName','tpl':'AcmeDemoBundle:Contact:contact.html.twig'})) }}
+{{ render(controller('f_devs_contact_us.controller.contact:contactAction',{'name':'contactName','tplContact':'AcmeDemoBundle:Contact:contact.html.twig'})) }}
+{# or #}
+{{ render(controller('f_devs_contact_us.controller.contact:contactAction',{'name':'contactName','tplConnect':'AcmeDemoBundle:Contact:connect.html.twig'})) }}
 ```
 
 insert in page contact list
@@ -118,6 +120,7 @@ insert in page contact list
 {# or #}
 {{ render(controller('f_devs_contact_us.controller.contact:listAction',{'tplContact':'AcmeDemoBundle:Contact:contact.html.twig'})) }}
 {{ render(controller('f_devs_contact_us.controller.contact:listAction',{'tplList':'AcmeDemoBundle:Contact:list.html.twig'})) }}
+{{ render(controller('f_devs_contact_us.controller.contact:listAction',{'tplConnect':'AcmeDemoBundle:Contact:connect.html.twig'})) }}
 {{ render(controller('f_devs_contact_us.controller.contact:listAction',{'tplList':'AcmeDemoBundle:Contact:list.html.twig','tplContact':'AcmeDemoBundle:Contact:contact.html.twig'})) }}
 ```
 
@@ -126,10 +129,10 @@ insert in page contact list
 add template
 
 ``` twig
-{# AcmeDemoBundle:Connect:skype.html.twig #}
-{% extends 'FDevsContactUsBundle:Connect:default.html.twig' %}
+{# AcmeDemoBundle:Default:connect.html.twig #}
+{% extends 'FDevsContactUsBundle:Contact:connect.html.twig' %}
 
-{% block connectBlock %}
+{% block skype %}
     <script type="text/javascript" src="http://www.skypeassets.com/i/scom/js/skype-uri.js"></script>
     <div id="SkypeButton_Call_yourname_1">
       <script type="text/javascript">
@@ -141,7 +144,7 @@ add template
         });
       </script>
     </div>
-{% endblock connectBlock %}
+{% endblock skype %}
 ```
 
 add config
@@ -150,10 +153,5 @@ add config
 # app/config/config.yml
 f_devs_contact_us:
     tpl:
-        connect:
-            email:  'FDevsContactUsBundle:Connect:email.html.twig'
-            fax:    'FDevsContactUsBundle:Connect:fax.html.twig'
-            github: 'FDevsContactUsBundle:Connect:github.html.twig'
-            phone:  'FDevsContactUsBundle:Connect:phone.html.twig'
-            skype:  'AcmeDemoBundle:Connect:skype.html.twig'
+        connect: "AcmeDemoBundle:Default:connect.html.twig"
 ```
