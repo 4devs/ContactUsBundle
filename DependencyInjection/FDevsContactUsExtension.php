@@ -22,24 +22,33 @@ class FDevsContactUsExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $container->setParameter($this->getAlias() . '.emails', $config['emails']);
-        $container->setParameter($this->getAlias() . '.from', $config['from']);
-        $container->setParameter($this->getAlias() . '.template_name', $config['template_name']);
-        $container->setParameter($this->getAlias() . '.manager_name', $config['manager_name']);
-        $container->setParameter($this->getAlias() . '.tpl.contact', $config['tpl']['contact']);
-        $container->setParameter($this->getAlias() . '.tpl.list', $config['tpl']['list']);
-        $container->setParameter($this->getAlias() . '.tpl.connect', $config['tpl']['connect']);
+        $container->setParameter($this->getAlias().'.class', $config['class']);
+        $container->setParameter($this->getAlias().'.form_type', $config['form_type']);
+        $container->setParameter($this->getAlias().'.form_action', $config['form_action']);
 
-        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
+        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
 
-        if ('custom' !== $config['db_driver']) {
-            $loader->load(sprintf('%s.xml', $config['db_driver']));
-            $container->setParameter($this->getAlias() . '.backend_type_' . $config['db_driver'], true);
+        if (isset($config['email'])) {
+            $container->setParameter($this->getAlias().'.email.emails', $config['email']['emails']);
+            $container->setParameter($this->getAlias().'.email.from', $config['email']['from']);
+            $container->setParameter($this->getAlias().'.email.template_name', $config['email']['template_name']);
+            $container->setParameter($this->getAlias().'.email.subject', $config['email']['subject']);
+            $loader->load('email.xml');
         }
 
-        if ($config['admin_service']) {
-            $loader->load('admin/' . $config['admin_service'] . '.xml');
+        if (isset($config['database'])) {
+            if ('custom' !== $config['database']['db_driver']) {
+                $container->setParameter($this->getAlias().'.doctrine.manager_name', $config['database']['doctrine_manager_name']);
+                $loader->load(sprintf('%s.xml', $config['database']['db_driver']));
+                $container->setParameter($this->getAlias().'.backend_type_'.$config['database']['db_driver'], true);
+            }
+            $container->setAlias('f_devs_contact_us.model_manager', $config['database']['model_manager']);
+            $loader->load('database.xml');
+
+            if ($config['database']['admin_service']) {
+                $loader->load('admin/'.$config['database']['admin_service'].'.xml');
+            }
         }
     }
 }

@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="f_devs_contact_us.email_manager.class">FDevs\ContactUsBundle\Service\EmailManager</parameter>
+        <parameter key="f_devs_contact_us.event_listener.email.class">FDevs\ContactUsBundle\EventListener\EmailListener</parameter>
+    </parameters>
+
+    <services>
+
+        <service id="f_devs_contact_us.email_manager" class="%f_devs_contact_us.email_manager.class%">
+            <argument>%f_devs_contact_us.email.emails%</argument>
+            <argument type="service" id="swiftmailer.mailer.default"/>
+            <argument type="service" id="templating"/>
+            <argument>%f_devs_contact_us.email.template_name%</argument>
+            <argument>%f_devs_contact_us.email.from%</argument>
+            <argument>%f_devs_contact_us.email.subject%</argument>
+        </service>
+
+        <service id="f_devs_contact_us.event_listener.email" class="%f_devs_contact_us.event_listener.email.class%">
+            <argument type="service" id="f_devs_contact_us.email_manager"/>
+            <tag name="kernel.event_listener" event="fdevs_contact_us.message.save" method="onMessageSave"/>
+        </service>
+
+    </services>
+
+</container>

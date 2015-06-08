@@ -7,8 +7,10 @@ Installation and usage is a quick:
 
 1. Download ContactUsBundle using composer
 2. Enable the Bundle
-3. Use the bundle
-4. Use Contact list
+3. Send user message by email
+4. Save message to mongodb
+5. Save message to your custom database
+5. Custom message model and form
 
 
 ### Step 1: Download ContactUsBundle using composer
@@ -62,25 +64,6 @@ or
 <script src="{{ asset('bundles/fdevscontactus/js/contact_me.js') }}"></script>
 ```
 
-add config
-
-``` yaml
-# app/config/config.yml
-f_devs_contact_us:
-    db_driver: 'mongodb'
-    admin_service: 'sonata' # if needed
-    emails: ['andrey@company.com','victor@company.com']
-    from: "mail@company.com"
-
-sonata_admin:
-    dashboard:
-        groups:
-            label.contactUs:
-                label_catalogue: FDevsContactUsBundle
-                items:
-                    - f_devs_contact_us.admin.contact_us
-```
-
 add routing
 
 ``` yaml
@@ -95,63 +78,125 @@ f_devs_contact_us:
 ```
 
 
-### Step 3: Use the bundle
-
 in your template
 
 ``` twig
 {{ render(controller('FDevsContactUsBundle:Default:index')) }}
 ```
 
-### Step 4: Use contact list
+### Step 3: Send user message by email
 
-insert in page contact by contact Name
-``` twig
-{{ render(controller('f_devs_contact_us.controller.contact:contactAction',{'name':'contactName'})) }}
-{# or #}
-{{ render(controller('f_devs_contact_us.controller.contact:contactAction',{'name':'contactName','tplContact':'AcmeDemoBundle:Contact:contact.html.twig'})) }}
-{# or #}
-{{ render(controller('f_devs_contact_us.controller.contact:contactAction',{'name':'contactName','tplConnect':'AcmeDemoBundle:Contact:connect.html.twig'})) }}
-```
+####install [Symfony Swiftmailer Bundle](https://github.com/symfony/SwiftmailerBundle)
+ 
+####add config
 
-insert in page contact list
-``` twig
-{{ render(controller('f_devs_contact_us.controller.contact:listAction')) }}
-{# or #}
-{{ render(controller('f_devs_contact_us.controller.contact:listAction',{'tplContact':'AcmeDemoBundle:Contact:contact.html.twig'})) }}
-{{ render(controller('f_devs_contact_us.controller.contact:listAction',{'tplList':'AcmeDemoBundle:Contact:list.html.twig'})) }}
-{{ render(controller('f_devs_contact_us.controller.contact:listAction',{'tplConnect':'AcmeDemoBundle:Contact:connect.html.twig'})) }}
-{{ render(controller('f_devs_contact_us.controller.contact:listAction',{'tplList':'AcmeDemoBundle:Contact:list.html.twig','tplContact':'AcmeDemoBundle:Contact:contact.html.twig'})) }}
-```
-
-### Step 5: Add/replace Tpl to connect type
-
-add template
-
-``` twig
-{# AcmeDemoBundle:Default:connect.html.twig #}
-{% extends 'FDevsContactUsBundle:Contact:connect.html.twig' %}
-
-{% block skype %}
-    <script type="text/javascript" src="http://www.skypeassets.com/i/scom/js/skype-uri.js"></script>
-    <div id="SkypeButton_Call_yourname_1">
-      <script type="text/javascript">
-        Skype.ui({
-          "name": "dropdown",
-          "element": "SkypeButton_Call_yourname_1",
-          "participants": ["yourname"],
-          "imageSize": 32
-        });
-      </script>
-    </div>
-{% endblock skype %}
-```
-
-add config
-    
 ``` yaml
 # app/config/config.yml
 f_devs_contact_us:
-    tpl:
-        connect: "AcmeDemoBundle:Default:connect.html.twig"
+    email:
+        from: %mailer_user%
+        emails: ['andrey@4devs.org','victor@4devs.org']
+```
+
+
+### Step 4: Save message to mongodb
+
+#### install [Doctrine MongoDB ODM](https://github.com/doctrine/DoctrineMongoDBBundle)
+ 
+#### add config
+
+``` yaml
+# app/config/config.yml
+f_devs_contact_us:
+    database:
+        db_driver: 'mongodb'
+```
+
+#### use sonata admin bundle
+
+add config
+
+``` yaml
+# app/config/config.yml
+f_devs_contact_us:
+    database:
+        db_driver: 'mongodb'
+        admin_service: 'sonata'
+        
+sonata_admin:
+    dashboard:
+        groups:
+            label.contactUs:
+                label_catalogue: FDevsContactUsBundle
+                items:
+                    - f_devs_contact_us.admin.contact_us
+```
+
+### Step 5: Save message to your custom database
+
+create service
+
+```php
+<?php
+
+namespace AppBundle\ModelManager;
+
+use FDevs\ContactUsBundle\Model\ModelManagerInterface;
+
+class MessageManager implements ModelManagerInterface
+{
+}
+```
+
+```xml
+<service id="app.model.message_manager" class="AppBundle\ModelManager\MessageManager"/>
+```
+
+add config
+
+``` yaml
+# app/config/config.yml
+f_devs_contact_us:
+    database:
+        model_manager:        app.model.message_manager
+```
+
+### Step 6: Custom message model and form
+
+if you needed send email
+
+```php
+<?php
+
+namespace AppBundle\Model;
+
+use FDevs\ContactUsBundle\Model\EmailInterface;
+
+class Message implements EmailInterface
+{
+}
+```
+
+if you don't need send email
+
+```php
+<?php
+
+namespace AppBundle\Model;
+
+use FDevs\ContactUsBundle\Model\MessageInterface;
+
+class Message implements MessageInterface
+{
+}
+```
+
+add config
+
+``` yaml
+# app/config/config.yml
+f_devs_contact_us:
+    class:                AppBundle\Model\Message
+    form_type:            contact_us_message #form type
+    form_action:          app_contact_us_form #route name
 ```

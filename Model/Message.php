@@ -2,9 +2,8 @@
 
 namespace FDevs\ContactUsBundle\Model;
 
-class Message
+class Message implements EmailInterface
 {
-
     /**
      * @var \MongoId $id
      */
@@ -40,6 +39,11 @@ class Message
      */
     protected $message;
 
+    /**
+     * init.
+     *
+     * @param string $ip
+     */
     public function __construct($ip = '')
     {
         $this->ip = $ip;
@@ -90,6 +94,16 @@ class Message
     public function setIp($ip)
     {
         $this->ip = $ip;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setClientIp($ip)
+    {
+        $this->setIp($ip);
 
         return $this;
     }

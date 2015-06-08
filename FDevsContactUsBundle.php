@@ -23,7 +23,7 @@ class FDevsContactUsBundle extends Bundle
      */
     private function addRegisterMappingsPass(ContainerBuilder $container)
     {
-        $mappings = [realpath(__DIR__ . '/Resources/config/doctrine/model') => 'FDevs\ContactUsBundle\Model'];
+        $mappings = [realpath(__DIR__.'/Resources/config/doctrine/model') => 'FDevs\ContactUsBundle\Model'];
 
         if (class_exists('Doctrine\Bundle\MongoDBBundle\DependencyInjection\Compiler\DoctrineMongoDBMappingsPass')) {
             $container->addCompilerPass(
@@ -34,7 +34,5 @@ class FDevsContactUsBundle extends Bundle
                 )
             );
         }
-
     }
-
 }

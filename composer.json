@@ -10,6 +10,10 @@
     ],
     "authors": [
         {
+            "name": "4devs company",
+            "homepage": "http://4devs.org"
+        },
+        {
             "name": "Samusev Andrey",
             "email": "andrey_simfi@list.ru",
             "homepage": "http://andrey.4devs.io/"
@@ -22,17 +26,14 @@
     "require-dev": {},
     "require": {
         "php": ">=5.4",
-        "symfony/symfony": "~2.5",
-        "twig/extensions": "~1.0",
-        "fdevs/geo-bundle": "~1.0",
-        "symfony/swiftmailer-bundle": "~2.3",
+        "symfony/symfony": "~2.6",
         "misd/phone-number-bundle": "~1.0"
     },
     "suggest": {
+        "symfony/swiftmailer-bundle": "to use with send email",
         "doctrine/mongodb-odm-bundle": "to use with mongodb"
     },
     "autoload": {
-        "psr-0": {"FDevs\\ContactUsBundle": ""}
-    },
-    "target-dir": "FDevs/ContactUsBundle"
+        "psr-4": {"FDevs\\ContactUsBundle\\": ""}
+    }
 }

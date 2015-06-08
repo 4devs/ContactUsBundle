@@ -2,7 +2,6 @@
 
 namespace FDevs\ContactUsBundle\Controller;
 
-use FDevs\ContactUsBundle\Form\Type\MessageType;
 use FDevs\ContactUsBundle\Model\Message;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Form;
@@ -13,28 +12,36 @@ class DefaultController extends Controller
 {
     public function indexAction(Request $request)
     {
-        $message = new Message($request->getClientIp());
-        $formType = new MessageType();
-        $form = $this->createForm(
-            $formType,
-            $message,
-            ['action' => $this->generateUrl('f_devs_contact_us_form'), 'attr' => ['id' => $formType->getName()]]
-        );
+        $mm = $this->container->get('f_devs_contact_us.message_manager');
+        $message = $mm->create();
+        $message->setClientIp($request->getClientIp());
+        $error = [];
+        $response = null;
+        $formType = $this->container->getParameter('f_devs_contact_us.form_type');
+        $formAction = $this->container->getParameter('f_devs_contact_us.form_action');
+        $form = $this->createForm($formType, $message, [
+            'action' => $this->generateUrl($formAction),
+            'attr'   => ['id' => $formType]
+        ]);
+
         $form->handleRequest($request);
         if ($form->isValid()) {
-            $this->container->get('f_devs_contact_us.message_manager')->create($message);
-
-            return new JsonResponse(
-                [
-                    'status' => 'ok',
-                    'message' => $this->get('translator.default')->trans('form.success', [], 'FDevsContactUsBundle')
-                ]
-            );
+            $error = $mm->save($message);
+            if (!count($error)) {
+                $response = new JsonResponse([
+                    'status'  => 'ok',
+                    'message' => $this->get('translator.default')->trans('form.success', [], 'FDevsContactUsBundle'),
+                ]);
+            }
         } elseif ($form->isSubmitted()) {
-            return new JsonResponse(['status' => 'error', 'error' => $this->getErrors($form)]);
+            $error = $this->getErrors($form);
         }
 
-        return $this->render('FDevsContactUsBundle:Default:index.html.twig', array('form' => $form->createView()));
+        if (count($error)) {
+            $response = new JsonResponse(['status' => 'error', 'error' => $this->getErrors($form)]);
+        }
+
+        return $response ?: $this->render('FDevsContactUsBundle:Default:index.html.twig', ['form' => $form->createView()]);
     }
 
     private function getErrors(Form $form)
@@ -50,6 +57,5 @@ class DefaultController extends Controller
         }
 
         return $errors;
-
     }
 }
