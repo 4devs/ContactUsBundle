@@ -1,6 +1,5 @@
 $(function () {
 
-    var formId = 'f_devs_contact_us_message';
     $("input,textarea").jqBootstrapValidation({
         preventSubmit: true,
         submitError: function ($form, event, errors) {
@@ -8,12 +7,7 @@ $(function () {
         },
         submitSuccess: function ($form, event) {
             event.preventDefault(); // prevent default submit behaviour
-            var firstName = $("#" + formId + "_name").val();
-
-            if (firstName.indexOf(' ') >= 0) {
-                firstName = name.split(' ').slice(0, -1).join(' ');
-            }
-            //$("#f_devs_contact_us_message").submit()
+            var formId = $($form).attr('id');
 
             $.ajax({
                 url: $("#" + formId).attr('action'),
@@ -46,6 +40,14 @@ $(function () {
                     }
                 },
                 error: function () {
+
+                    var firstName = $("#" + formId + "_name").val();
+
+                    if (firstName && firstName.indexOf(' ') >= 0) {
+                        firstName = name.split(' ').slice(0, -1).join(' ');
+                    } else {
+                        firstName = '';
+                    }
                     // Fail message
                     $('#success').html("<div class='alert alert-danger'>");
                     $('#success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
@@ -59,7 +61,7 @@ $(function () {
         },
         filter: function () {
             return $(this).is(":visible");
-        },
+        }
     });
 
     $("a[data-toggle=\"tab\"]").click(function (e) {

@@ -21,7 +21,6 @@ class ContactUsAdmin extends Admin
             ->add('name', null, ['read_only' => true])
             ->add('phone', null, ['read_only' => true])
             ->add('message', 'textarea', ['read_only' => true]);
-
     }
 
     /**
@@ -42,5 +41,4 @@ class ContactUsAdmin extends Admin
             ->add('createdAt')
             ->add('phone');
     }
-
 }

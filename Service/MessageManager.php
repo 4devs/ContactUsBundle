@@ -2,78 +2,53 @@
 
 namespace FDevs\ContactUsBundle\Service;
 
-use Doctrine\Common\Persistence\ObjectManager;
-use FDevs\ContactUsBundle\Model\Message;
-use Symfony\Component\Templating\EngineInterface;
+use FDevs\ContactUsBundle\Event\MessageEvent;
+use FDevs\ContactUsBundle\Event\MessageEvents;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use FDevs\ContactUsBundle\Model\MessageInterface;
 
 class MessageManager
 {
-    /** @var array */
-    private $emails = [];
-    /** @var \Swift_Mailer */
-    private $mailer;
-    /** @var ObjectManager|null */
-    private $objectManager;
-    /** @var \Symfony\Component\Templating\EngineInterface */
-    private $templating;
-    /** @var string A template name or a TemplateReferenceInterface instance */
-    private $templateName;
     /** @var string */
-    private $fromEmail;
+    private $class;
+
+    /** @var EventDispatcherInterface */
+    private $dispatcher;
 
     /**
-     * init
+     * init.
      *
-     * @param array         $emails
-     * @param \Swift_Mailer $mailer
-     * @param ObjectManager $objectManager
+     * @param string                   $class
+     * @param EventDispatcherInterface $dispatcher
      */
-    public function __construct(
-        array $emails,
-        \Swift_Mailer $mailer,
-        EngineInterface $templating,
-        $templateName,
-        $fromEmail,
-        ObjectManager $objectManager = null
-    ) {
-        $this->fromEmail = $fromEmail;
-        $this->mailer = $mailer;
-        $this->emails = $emails;
-        $this->objectManager = $objectManager;
-        $this->templating = $templating;
-        $this->templateName = $templateName;
-    }
-
-    public function create(Message $message)
+    public function __construct($class, EventDispatcherInterface $dispatcher)
     {
-        $this->persistDB($message)
-            ->sendEmails($message);
-
-        return true;
+        $this->class = $class;
+        $this->dispatcher = $dispatcher;
     }
 
-    private function persistDB(Message $message)
+    /**
+     * create
+     *
+     * @return MessageInterface
+     */
+    public function create()
     {
-        if ($this->objectManager) {
-            $this->objectManager->persist($message);
-            $this->objectManager->flush();
-        }
+        $message = new $this->class();
+        $this->dispatcher->dispatch(MessageEvents::CREATE, new MessageEvent($message));
 
-        return $this;
+        return $message;
     }
 
-    private function sendEmails(Message $message)
+    /**
+     * save.
+     *
+     * @param MessageInterface $message
+     *
+     * @return array error
+     */
+    public function save(MessageInterface $message)
     {
-        $email = \Swift_Message::newInstance()
-            ->setSubject('Contact Us Message')
-            ->setFrom($this->fromEmail)
-            ->setReplyTo($message->getEmail())
-            ->setTo($this->emails)
-            ->setBody($this->templating->render($this->templateName, ['message' => $message]), 'text/html');
-
-        $this->mailer->send($email);
-
-        return $this;
+        return $this->dispatcher->dispatch(MessageEvents::SAVE, new MessageEvent($message))->getError();
     }
-
 }
