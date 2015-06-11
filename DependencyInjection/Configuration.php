@@ -20,7 +20,7 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('f_devs_contact_us');
 
-        $supportedDrivers = ['mongodb','custom'];
+        $supportedDrivers = ['mongodb', 'orm', 'custom'];
         $supportedAdminService = ['sonata','none'];
 
         $rootNode
@@ -54,6 +54,7 @@ class Configuration implements ConfigurationInterface
                         ->end()
                         ->scalarNode('doctrine_manager_name')->defaultNull()->end()
                         ->scalarNode('db_driver')
+                            ->cannotBeEmpty()
                             ->defaultValue('custom')
                             ->validate()
                             ->ifNotInArray($supportedDrivers)

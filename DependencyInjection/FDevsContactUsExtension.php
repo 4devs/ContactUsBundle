@@ -38,15 +38,15 @@ class FDevsContactUsExtension extends Extension
         }
 
         if (isset($config['database'])) {
+            $container->setParameter($this->getAlias().'.doctrine.manager_name', $config['database']['doctrine_manager_name']);
+            $container->setParameter($this->getAlias().'.backend_type_'.$config['database']['db_driver'], true);
             if ('custom' !== $config['database']['db_driver']) {
-                $container->setParameter($this->getAlias().'.doctrine.manager_name', $config['database']['doctrine_manager_name']);
                 $loader->load(sprintf('%s.xml', $config['database']['db_driver']));
-                $container->setParameter($this->getAlias().'.backend_type_'.$config['database']['db_driver'], true);
             }
             $container->setAlias('f_devs_contact_us.model_manager', $config['database']['model_manager']);
             $loader->load('database.xml');
 
-            if ($config['database']['admin_service']) {
+            if ($config['database']['admin_service'] !== 'none') {
                 $loader->load('admin/'.$config['database']['admin_service'].'.xml');
             }
         }
