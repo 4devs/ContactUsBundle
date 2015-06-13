@@ -5,7 +5,7 @@ namespace FDevs\ContactUsBundle\Model;
 class Message implements EmailInterface
 {
     /**
-     * @var \MongoId $id
+     * @var mixed $id
      */
     protected $id;
 
