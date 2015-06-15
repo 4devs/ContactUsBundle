@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                  http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <mapped-superclass name="FDevs\ContactUsBundle\Model\Email" table="contact_email">
+
+        <field name="createdAt" column="created_at" type="datetime"/>
+        <field name="clientIp" column="client_ip" type="string" length="255"/>
+        <field name="email" column="email" type="string" length="255"/>
+
+    </mapped-superclass>
+
+</doctrine-mapping>

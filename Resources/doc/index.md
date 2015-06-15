@@ -20,7 +20,8 @@ Add ContactUsBundle in your composer.json:
 ```js
 {
     "require": {
-        "fdevs/contact-us-bundle": "*"
+        "fdevs/contact-us-bundle": "*",
+        "misd/phone-number-bundle": "~1.0"
     }
 }
 ```

@@ -2,7 +2,7 @@
 
 namespace FDevs\ContactUsBundle\Model;
 
-class Message implements EmailInterface
+class Message extends Email implements EmailInterface
 {
     /**
      * @var mixed $id
@@ -10,29 +10,14 @@ class Message implements EmailInterface
     protected $id;
 
     /**
-     * @var date $createdAt
+     * @var string $phone
      */
-    protected $createdAt;
-
-    /**
-     * @var string $ip
-     */
-    protected $ip;
-
-    /**
-     * @var string $email
-     */
-    protected $email;
+    protected $phone;
 
     /**
      * @var string $name
      */
     protected $name;
-
-    /**
-     * @var string $phone
-     */
-    protected $phone;
 
     /**
      * @var string $message
@@ -46,124 +31,18 @@ class Message implements EmailInterface
      */
     public function __construct($ip = '')
     {
-        $this->ip = $ip;
-        $this->createdAt = new \DateTime();
+        $this->setClientIp($ip);
+        $this->setCreatedAt(new \DateTime());
     }
 
     /**
      * Get id
      *
-     * @return id $id
+     * @return mixed $id
      */
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set createdAt
-     *
-     * @param date $createdAt
-     *
-     * @return self
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    /**
-     * Get createdAt
-     *
-     * @return date $createdAt
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * Set ip
-     *
-     * @param string $ip
-     *
-     * @return self
-     */
-    public function setIp($ip)
-    {
-        $this->ip = $ip;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setClientIp($ip)
-    {
-        $this->setIp($ip);
-
-        return $this;
-    }
-
-    /**
-     * Get ip
-     *
-     * @return string $ip
-     */
-    public function getIp()
-    {
-        return $this->ip;
-    }
-
-    /**
-     * Set email
-     *
-     * @param string $email
-     *
-     * @return self
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * Get email
-     *
-     * @return string $email
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * Set name
-     *
-     * @param string $name
-     *
-     * @return self
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string $name
-     */
-    public function getName()
-    {
-        return $this->name;
     }
 
     /**
@@ -188,6 +67,30 @@ class Message implements EmailInterface
     public function getPhone()
     {
         return $this->phone;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return self
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string $name
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 
     /**

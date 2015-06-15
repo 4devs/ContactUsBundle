@@ -6,31 +6,20 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class MessageType extends AbstractType
+class EmailType extends AbstractType
 {
     /**
      * {@inheritDoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('name', 'text', ['attr' => ['placeholder' => 'placeholder.name']])
-            ->add('phone', 'text', ['attr' => ['placeholder' => 'placeholder.phone'], 'required' => false])
-            ->add('message', 'textarea', ['attr' => ['placeholder' => 'placeholder.message']]);
+        $builder->add('email', 'email', ['attr' => ['placeholder' => 'placeholder.email']]);
     }
 
     /**
      * {@inheritDoc}
      */
     public function getName()
-    {
-        return 'contact_us_message';
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getParent()
     {
         return 'contact_us_email';
     }
@@ -41,7 +30,7 @@ class MessageType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class'         => 'FDevs\ContactUsBundle\Model\Message',
+            'data_class'         => 'FDevs\ContactUsBundle\Model\Email',
             'translation_domain' => 'FDevsContactUsBundle',
         ]);
     }

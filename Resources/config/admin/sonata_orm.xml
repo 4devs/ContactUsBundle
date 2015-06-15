@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+
+    <services>
+
+        <service id="f_devs_contact_us.admin.contact_us" class="%f_devs_contact_us.admin_message.class%">
+            <tag name="sonata.admin" label_catalogue="%f_devs_contact_us.admin.label_catalogue%"
+                 manager_type="orm" group="%f_devs_contact_us.admin.groupname%" label="label.list_message"/>
+            <argument/>
+            <argument>%f_devs_contact_us.admin.message.model%</argument>
+            <argument/>
+            <call method="setTranslationDomain">
+                <argument>%f_devs_contact_us.admin.translation_domain%</argument>
+            </call>
+        </service>
+
+    </services>
+
+</container>

@@ -4,38 +4,7 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping
         http://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
 
-    <class name="FDevs\ContactUsBundle\Model\Message">
-
-        <property name="name">
-            <constraint name="NotBlank">
-                <option name="message">f_devs_contact_us.name.blank</option>
-            </constraint>
-            <constraint name="Length">
-                <option name="min">2</option>
-                <option name="minMessage">f_devs_contact_us.name.short</option>
-                <option name="max">255</option>
-                <option name="maxMessage">f_devs_contact_us.name.long</option>
-            </constraint>
-        </property>
-
-        <property name="phone">
-            <constraint name="Misd\PhoneNumberBundle\Validator\Constraints\PhoneNumber">
-                <option name="message">f_devs_contact_us.phone.invalid</option>
-            </constraint>
-        </property>
-
-        <property name="message">
-            <constraint name="NotBlank">
-                <option name="message">f_devs_contact_us.message.blank</option>
-            </constraint>
-            <constraint name="Length">
-                <option name="min">2</option>
-                <option name="minMessage">f_devs_contact_us.message.short</option>
-                <option name="max">65544</option>
-                <option name="maxMessage">f_devs_contact_us.message.long</option>
-            </constraint>
-        </property>
-
+    <class name="FDevs\ContactUsBundle\Model\Email">
         <property name="email">
             <constraint name="NotBlank">
                 <option name="message">f_devs_contact_us.email.blank</option>
@@ -52,6 +21,41 @@
             </constraint>
             <constraint name="Email">
                 <option name="message">f_devs_contact_us.email.invalid</option>
+            </constraint>
+        </property>
+    </class>
+
+    <class name="FDevs\ContactUsBundle\Model\Message">
+        <property name="name">
+            <constraint name="NotBlank">
+                <option name="message">f_devs_contact_us.name.blank</option>
+            </constraint>
+            <constraint name="Length">
+                <option name="min">2</option>
+                <option name="minMessage">f_devs_contact_us.name.short</option>
+                <option name="max">255</option>
+                <option name="maxMessage">f_devs_contact_us.name.long</option>
+            </constraint>
+        </property>
+
+        <property name="phone">
+            <constraint name="Length">
+                <option name="min">5</option>
+                <option name="minMessage">f_devs_contact_us.phone.invalid</option>
+                <option name="max">20</option>
+                <option name="maxMessage">f_devs_contact_us.phone.invalid</option>
+            </constraint>
+        </property>
+
+        <property name="message">
+            <constraint name="NotBlank">
+                <option name="message">f_devs_contact_us.message.blank</option>
+            </constraint>
+            <constraint name="Length">
+                <option name="min">2</option>
+                <option name="minMessage">f_devs_contact_us.message.short</option>
+                <option name="max">65544</option>
+                <option name="maxMessage">f_devs_contact_us.message.long</option>
             </constraint>
         </property>
 

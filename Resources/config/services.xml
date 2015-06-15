@@ -7,6 +7,7 @@
     <parameters>
         <parameter key="f_devs_contact_us.message_manager.class">FDevs\ContactUsBundle\Service\MessageManager</parameter>
         <parameter key="f_devs_contact_us.form.type.message.class">FDevs\ContactUsBundle\Form\Type\MessageType</parameter>
+        <parameter key="f_devs_contact_us.form.type.email.class">FDevs\ContactUsBundle\Form\Type\EmailType</parameter>
     </parameters>
 
     <services>
@@ -18,6 +19,9 @@
 
         <service id="f_devs_contact_us.form.type.message" class="%f_devs_contact_us.form.type.message.class%">
             <tag name="form.type" alias="contact_us_message"/>
+        </service>
+        <service id="f_devs_contact_us.form.type.email" class="%f_devs_contact_us.form.type.email.class%">
+            <tag name="form.type" alias="contact_us_email"/>
         </service>
 
     </services>

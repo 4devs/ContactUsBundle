@@ -4,13 +4,12 @@
                         xsi:schemaLocation="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping
                         http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping.xsd">
 
-    <document name="FDevs\ContactUsBundle\Model\Message" collection="contact_message">
+    <mapped-superclass name="FDevs\ContactUsBundle\Model\Email" collection="contact_email">
 
-        <field name="id" id="true"/>
-        <field name="name" type="string"/>
-        <field name="phone" type="string"/>
-        <field name="message" type="string"/>
+        <field name="createdAt" type="date"/>
+        <field name="clientIp" type="string"/>
+        <field name="email" type="string"/>
 
-    </document>
+    </mapped-superclass>
 
 </doctrine-mongo-mapping>
