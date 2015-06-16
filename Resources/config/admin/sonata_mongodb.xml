@@ -12,7 +12,7 @@
             <tag name="sonata.admin" label_catalogue="%f_devs_contact_us.admin.label_catalogue%"
                  manager_type="doctrine_mongodb" group="%f_devs_contact_us.admin.groupname%" label="label.list_message"/>
             <argument/>
-            <argument>%f_devs_contact_us.admin.message.model%</argument>
+            <argument>%f_devs_contact_us.class%</argument>
             <argument/>
             <call method="setTranslationDomain">
                 <argument>%f_devs_contact_us.admin.translation_domain%</argument>
