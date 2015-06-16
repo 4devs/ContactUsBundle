@@ -9,7 +9,6 @@
     </parameters>
 
     <services>
-        <service id="f_devs_contact_us.admin.manager_type" alias="sonata.admin.manager.doctrine_mongodb"/>
         <service id="f_devs_contact_us.doctrine.model_manager" factory-service="doctrine_mongodb" factory-method="getManager" class="Doctrine\ODM\MongoDB\DocumentManager" public="false">
             <argument>%f_devs_contact_us.doctrine.manager_name%</argument>
         </service>

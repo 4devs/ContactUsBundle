@@ -6,6 +6,8 @@
 
 
     <services>
+        <service id="f_devs_contact_us.admin.manager_type" alias="sonata.admin.manager.doctrine_mongodb"/>
+
         <service id="f_devs_contact_us.admin.contact_us" class="%f_devs_contact_us.admin_message.class%">
             <tag name="sonata.admin" label_catalogue="%f_devs_contact_us.admin.label_catalogue%"
                  manager_type="doctrine_mongodb" group="%f_devs_contact_us.admin.groupname%" label="label.list_message"/>

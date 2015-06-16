@@ -6,6 +6,7 @@
 
 
     <services>
+        <service id="f_devs_contact_us.admin.manager_type" alias="sonata.admin.manager.orm"/>
 
         <service id="f_devs_contact_us.admin.contact_us" class="%f_devs_contact_us.admin_message.class%">
             <tag name="sonata.admin" label_catalogue="%f_devs_contact_us.admin.label_catalogue%"
