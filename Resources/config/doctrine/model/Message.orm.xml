@@ -4,19 +4,14 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                   http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="FDevs\ContactUsBundle\Model\Message" table="contact_us">
+    <entity name="FDevs\ContactUsBundle\Model\Message" table="contact_message">
 
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO"/>
         </id>
-
-        <field name="createdAt" column="created_at" type="datetime"/>
-        <field name="ip" column="ip" type="string" length="255"/>
-        <field name="email" column="email" type="string" length="255"/>
         <field name="name" column="name" type="string" length="255"/>
         <field name="phone" column="phone" type="string" length="50" nullable="true"/>
         <field name="message" column="message" type="text"/>
-
     </entity>
 
 </doctrine-mapping>

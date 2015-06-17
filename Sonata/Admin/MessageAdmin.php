@@ -7,7 +7,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
 
-class ContactUsAdmin extends Admin
+class MessageAdmin extends Admin
 {
     /**
      * {@inheritdoc}
@@ -15,12 +15,7 @@ class ContactUsAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('createdAt', 'datetime', ['widget' => 'single_text', 'read_only' => true])
-            ->add('ip', null, ['read_only' => true])
-            ->add('email', null, ['read_only' => true])
-            ->add('name', null, ['read_only' => true])
-            ->add('phone', null, ['read_only' => true])
-            ->add('message', 'textarea', ['read_only' => true]);
+            ->add('message', 'contact_us_message', ['inherit_data' => true, 'read_only' => true]);
     }
 
     /**
