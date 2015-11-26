@@ -8,7 +8,6 @@
         <parameter key="f_devs_contact_us.admin_message.class">FDevs\ContactUsBundle\Sonata\Admin\MessageAdmin</parameter>
         <parameter key="f_devs_contact_us.admin.groupname">ContactUs</parameter>
         <parameter key="f_devs_contact_us.admin.label_catalogue">FDevsContactUsBundle</parameter>
-        <parameter key="f_devs_contact_us.class">FDevs\ContactUsBundle\Model\Message</parameter>
         <parameter key="f_devs_contact_us.admin.translation_domain">FDevsContactUsBundle</parameter>
         <parameter key="f_devs_contact_us.manager_type">FDevsContactUsBundle</parameter>
     </parameters>
