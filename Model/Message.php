@@ -5,22 +5,22 @@ namespace FDevs\ContactUsBundle\Model;
 class Message extends Email implements EmailInterface
 {
     /**
-     * @var mixed $id
+     * @var mixed
      */
     protected $id;
 
     /**
-     * @var string $phone
+     * @var string
      */
     protected $phone;
 
     /**
-     * @var string $name
+     * @var string
      */
     protected $name;
 
     /**
-     * @var string $message
+     * @var string
      */
     protected $message;
 
@@ -36,7 +36,7 @@ class Message extends Email implements EmailInterface
     }
 
     /**
-     * Get id
+     * Get id.
      *
      * @return mixed $id
      */
@@ -46,7 +46,7 @@ class Message extends Email implements EmailInterface
     }
 
     /**
-     * Set phone
+     * Set phone.
      *
      * @param string $phone
      *
@@ -60,7 +60,7 @@ class Message extends Email implements EmailInterface
     }
 
     /**
-     * Get phone
+     * Get phone.
      *
      * @return string $phone
      */
@@ -70,7 +70,7 @@ class Message extends Email implements EmailInterface
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
      *
@@ -84,7 +84,7 @@ class Message extends Email implements EmailInterface
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string $name
      */
@@ -94,7 +94,7 @@ class Message extends Email implements EmailInterface
     }
 
     /**
-     * Set message
+     * Set message.
      *
      * @param string $message
      *
@@ -108,7 +108,7 @@ class Message extends Email implements EmailInterface
     }
 
     /**
-     * Get message
+     * Get message.
      *
      * @return string $message
      */

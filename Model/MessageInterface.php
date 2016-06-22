@@ -5,7 +5,7 @@ namespace FDevs\ContactUsBundle\Model;
 interface MessageInterface
 {
     /**
-     * set client ip
+     * set client ip.
      *
      * @param string $ip
      *

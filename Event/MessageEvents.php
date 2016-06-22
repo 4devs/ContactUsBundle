@@ -5,7 +5,7 @@ namespace FDevs\ContactUsBundle\Event;
 final class MessageEvents
 {
     /**
-     * The CREATE event is dispatched then message create
+     * The CREATE event is dispatched then message create.
      *
      * The event listener method receives a FDevs\ContactUsBundle\Event\MessageEvent instance
      *
@@ -16,7 +16,7 @@ final class MessageEvents
     const CREATE = 'fdevs_contact_us.message.create';
 
     /**
-     * The SAVE event is dispatched then message save
+     * The SAVE event is dispatched then message save.
      *
      * The event listener method receives a FDevs\ContactUsBundle\Event\MessageEvent instance
      *

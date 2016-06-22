@@ -5,7 +5,7 @@ namespace FDevs\ContactUsBundle\Model;
 interface EmailInterface extends MessageInterface
 {
     /**
-     * get email
+     * get email.
      *
      * @return string
      */

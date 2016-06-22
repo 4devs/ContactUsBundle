@@ -11,7 +11,7 @@ trait MessageTrait
     protected $createdAt;
 
     /**
-     * set client ip
+     * set client ip.
      *
      * @param string $ip
      *
@@ -25,7 +25,7 @@ trait MessageTrait
     }
 
     /**
-     * get client ip
+     * get client ip.
      *
      * @return string
      */
@@ -35,7 +35,7 @@ trait MessageTrait
     }
 
     /**
-     * get created at
+     * get created at.
      *
      * @return \DateTime
      */
@@ -45,7 +45,7 @@ trait MessageTrait
     }
 
     /**
-     * set created at
+     * set created at.
      *
      * @param \DateTime $createdAt
      *

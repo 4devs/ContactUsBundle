@@ -22,7 +22,7 @@ class MessageManager implements ModelManagerInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function persist(MessageInterface $message)
     {
@@ -32,7 +32,7 @@ class MessageManager implements ModelManagerInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function flush(MessageInterface $message)
     {

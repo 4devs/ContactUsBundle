@@ -24,7 +24,7 @@ class MessageEvent extends Event
     }
 
     /**
-     * get message
+     * get message.
      *
      * @return MessageInterface
      */
@@ -34,7 +34,7 @@ class MessageEvent extends Event
     }
 
     /**
-     * set error message
+     * set error message.
      *
      * @param string $error
      */
@@ -44,7 +44,7 @@ class MessageEvent extends Event
     }
 
     /**
-     * get error message
+     * get error message.
      *
      * @return array
      */

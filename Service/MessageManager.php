@@ -28,7 +28,7 @@ class MessageManager
     }
 
     /**
-     * create
+     * create.
      *
      * @return MessageInterface
      */

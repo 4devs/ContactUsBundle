@@ -52,7 +52,7 @@ class EmailManager
     }
 
     /**
-     * send message
+     * send message.
      *
      * @param EmailInterface $message
      * @param string         $subject

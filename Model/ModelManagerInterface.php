@@ -5,7 +5,7 @@ namespace FDevs\ContactUsBundle\Model;
 interface ModelManagerInterface
 {
     /**
-     * persist message
+     * persist message.
      *
      * @param MessageInterface $message
      *
@@ -14,7 +14,7 @@ interface ModelManagerInterface
     public function persist(MessageInterface $message);
 
     /**
-     * flush object message
+     * flush object message.
      *
      * @param MessageInterface $message
      *

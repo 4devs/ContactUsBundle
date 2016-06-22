@@ -8,7 +8,7 @@ trait EmailTrait
     protected $email;
 
     /**
-     * Set email
+     * Set email.
      *
      * @param string $email
      *
@@ -22,7 +22,7 @@ trait EmailTrait
     }
 
     /**
-     * Get email
+     * Get email.
      *
      * @return string $email
      */

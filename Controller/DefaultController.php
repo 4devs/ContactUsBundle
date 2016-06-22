@@ -21,7 +21,7 @@ class DefaultController extends Controller
         $formAction = $this->container->getParameter('f_devs_contact_us.form_action');
         $form = $this->createForm($formType, $message, [
             'action' => $this->generateUrl($formAction),
-            'attr'   => ['id' => $formType]
+            'attr' => ['id' => $formType],
         ]);
 
         $form->handleRequest($request);
@@ -29,7 +29,7 @@ class DefaultController extends Controller
             $error = $mm->save($message);
             if (!count($error)) {
                 $response = new JsonResponse([
-                    'status'  => 'ok',
+                    'status' => 'ok',
                     'message' => $this->get('translator.default')->trans('form.success', [], 'FDevsContactUsBundle'),
                 ]);
             }
