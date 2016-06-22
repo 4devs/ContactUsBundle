@@ -9,7 +9,8 @@
     </parameters>
 
     <services>
-        <service id="f_devs_contact_us.doctrine.model_manager" factory-service="doctrine" factory-method="getManager" class="Doctrine\ORM\EntityManager" public="false">
+        <service id="f_devs_contact_us.doctrine.model_manager" class="Doctrine\ORM\EntityManager" public="false">
+            <factory service="doctrine" method="getManager"/>
             <argument>%f_devs_contact_us.doctrine.manager_name%</argument>
         </service>
 
